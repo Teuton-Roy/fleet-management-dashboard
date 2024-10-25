@@ -3,66 +3,66 @@ import VehicleForm from './VehicleForm';
 import FleetDashboard from './FleetDashboard';
 import FleetOverview from './FleetOverview';
 import VehicleStatusUpdater from './VehicleStatusUpdater';
-
+import {
+  getVehicles,
+  addOrUpdateVehicle,
+  removeVehicle,
+  getAverageBattery,
+  getLowBatteryCount
+} from '../Utility/vehicleData';
 
 function Dashboard() {
-    const [vehicles, setVehicles] = useState([]);
+  const [vehicles, setVehicles] = useState([]);
 
-    // Load initial vehicle data from local storage or set an empty array
-    useEffect(() => {
-        const savedVehicles = JSON.parse(localStorage.getItem('vehicles')) || [];
-        setVehicles(savedVehicles);
-    }, []);
+  // Load vehicles initially from local storage
+  useEffect(() => {
+    const initialVehicles = getVehicles();
+    setVehicles(initialVehicles);
+  }, []);
 
+  // Add or update a vehicle
+  const handleAddOrUpdateVehicle = (vehicle) => {
+    addOrUpdateVehicle(vehicle);        // Save to local storage
+    setVehicles(getVehicles());         // Refresh state with updated list
+  };
 
-    // Save vehicle data to local storage whenever there's an update
-    useEffect(() => {
-        localStorage.setItem('vehicles', JSON.stringify(vehicles));
-    }, [vehicles]);
+  // Remove a vehicle
+  const handleRemoveVehicle = (id) => {
+    removeVehicle(id);                  // Remove from local storage
+    setVehicles(getVehicles());         // Refresh state with updated list
+  };
 
-    // Add or update a vehicle in the fleet
-    const handleAddOrUpdateVehicle = (vehicle) => {
-        setVehicles((prevVehicles) => {
-            const vehicleExists = prevVehicles.some((v) => v.id === vehicle.id);
-            if (vehicleExists) {
-                return prevVehicles.map((v) => (v.id === vehicle.id ? vehicle : v));
-            }
-            return [...prevVehicles, vehicle];
-        });
-    };
+  // Update a specific vehicle’s status or battery in real-time
+  const handleUpdateVehicle = (updatedVehicle) => {
+    addOrUpdateVehicle(updatedVehicle); // Update in local storage
+    setVehicles(getVehicles());         // Refresh state with updated list
+  };
 
+  // Calculate metrics for FleetOverview
+  const averageBattery = getAverageBattery();
+  const lowBatteryCount = getLowBatteryCount(20);
 
-    // Remove a vehicle from the fleet
-    const handleRemoveVehicle = (id) => {
-        setVehicles((prevVehicles) => prevVehicles.filter((vehicle) => vehicle.id !== id));
-    };
+  return (
+    <div className="dashboard">
+      <h1>EV Fleet Management Dashboard</h1>
 
-    // Update a single vehicle's data
-    const handleUpdateVehicle = (updatedVehicle) => {
-        setVehicles((prevVehicles) =>
-            prevVehicles.map((vehicle) =>
-                vehicle.id === updatedVehicle.id ? updatedVehicle : vehicle
-            )
-        );
-    };
+      {/* Vehicle Form for adding and updating vehicles */}
+      <VehicleForm onSubmit={handleAddOrUpdateVehicle} />
 
-    return (
-        <>
-            <h1>EV Fleet Management Dashboard</h1>
+      {/* Fleet Overview component showing summary statistics */}
+      <FleetOverview 
+        vehicles={vehicles} 
+        averageBattery={averageBattery} 
+        lowBatteryCount={lowBatteryCount} 
+      />
 
-            {/* Vehicle Form for adding and updating vehicles */}
-            <VehicleForm onSubmit={handleAddOrUpdateVehicle} />
+      {/* Fleet Dashboard showing individual vehicle details */}
+      <FleetDashboard vehicles={vehicles} onRemoveVehicle={handleRemoveVehicle} />
 
-            {/* Fleet Overview component showing summary statistics */}
-            <FleetOverview vehicles={vehicles} />
-
-            {/* Fleet Dashboard showing individual vehicle details */}
-            <FleetDashboard vehicles={vehicles} onRemoveVehicle={handleRemoveVehicle} />
-
-            {/* VehicleStatusUpdater for real-time status simulation */}
-            <VehicleStatusUpdater vehicles={vehicles} updateVehicle={handleUpdateVehicle} />
-        </>
-    );
+      {/* VehicleStatusUpdater for real-time status simulation */}
+      <VehicleStatusUpdater vehicles={vehicles} updateVehicle={handleUpdateVehicle} />
+    </div>
+  );
 }
 
 export default Dashboard;

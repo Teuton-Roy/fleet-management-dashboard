@@ -68,3 +68,46 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Fleet Management Dashboard
+
+## Overview
+
+This Fleet Management Dashboard is a React-based web application designed to help manage and monitor a fleet of electric vehicles. It provides real-time insights into vehicle status, battery levels, and charging schedules, enabling efficient fleet operations and maintenance.
+
+## Features
+
+- **Real-time Fleet Overview**: Get a quick glance at your entire fleet's status.
+- **Vehicle Status Monitoring**: Track individual vehicle details including battery levels and operational status.
+- **Low Battery Alerts**: Receive notifications for vehicles with critically low battery levels.
+- **Charging Scheduler**: Plan and manage charging schedules for optimal fleet readiness.
+- **Vehicle Management**: Add, edit, and update vehicle information easily.
+- **Responsive Design**: Access the dashboard on various devices with a mobile-friendly interface.
+
+## Technologies Used
+
+- React.js
+- Recharts for data visualization
+- Tailwind CSS for styling
+- Lucide React for icons
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14.0.0 or later)
+- npm (v6.0.0 or later)
+
+### Installation
+
+1. Clone the repository:
+
+2. Navigate to the project directory:
+
+3. Install dependencies:
+
+4. Start the development server:
+
+5. Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
+

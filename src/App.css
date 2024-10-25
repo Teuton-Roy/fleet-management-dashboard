@@ -1,189 +1,273 @@
-/* Base Styles */
+/* Modern Color System with CSS Variables */
 :root {
   --primary: #3b82f6;
   --primary-dark: #1d4ed8;
+  --primary-light: #60a5fa;
   --secondary: #64748b;
   --accent: #06b6d4;
   --success: #22c55e;
   --warning: #f59e0b;
   --danger: #ef4444;
-  --background: #0f172a;
+  --background: #222d4a;
+  --background-light: #1e293b;
+  --background-lighter: #334155;
   --text: #f8fafc;
-  --text-secondary: #cbd5e1;
+  --text-secondary: #ffffff;
+  --text-muted: #94a3b8;
   --border: rgba(255, 255, 255, 0.1);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-* {
+/* Modern Reset with Improved Defaults */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Enhanced Typography */
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background);
   color: var(--text);
-  line-height: 1.7; /* Increased line height for better readability */
-  font-size: 16px; /* Base font size */
-  letter-spacing: 0.3px; /* Slight letter spacing for better readability */
+  line-height: 1.7;
+  font-size: 16px;
+  letter-spacing: 0.3px;
 }
 
-/* Typography */
+/* Improved Heading Hierarchy */
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.5rem;
   line-height: 1.3;
   font-weight: 600;
+  color: var(--text);
 }
 
-h1 { font-size: 2.5rem; margin-top: 2rem; }
-h2 { font-size: 2rem; margin-top: 1.75rem; }
-h3 { font-size: 1.75rem; margin-top: 1.5rem; }
-h4 { font-size: 1.5rem; margin-top: 1.25rem; }
-h5 { font-size: 1.25rem; margin-top: 1rem; }
-h6 { font-size: 1rem; margin-top: 0.75rem; }
+h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
+h2 { font-size: 2rem; letter-spacing: -0.01em; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
 
-p {
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-}
-
-/* App Container */
+/* Enhanced Container Layout */
 .App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem; /* Increased padding */
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 2rem;
+  gap: 2rem;
 }
 
-/* Card Styles with improved spacing */
+/* Modern Card Design */
 .card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 1rem;
-  padding: 2rem; /* Increased padding */
-  margin-bottom: 2rem; /* Increased margin */
-  transition: transform 0.2s, box-shadow 0.2s;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
 }
 
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced Vehicle Card */
 .vehicle-card {
-  background: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, var(--background-light), var(--background));
   border-radius: 1rem;
-  padding: 2rem; /* Increased padding */
-  margin-bottom: 2rem; /* Increased margin */
+  padding: 2rem;
   border: 1px solid var(--border);
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Grid Layout with more spacing */
+.vehicle-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.vehicle-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.vehicle-card:hover::before {
+  opacity: 1;
+}
+
+/* Responsive Grid System */
 .grid {
   display: grid;
-  gap: 2rem; /* Increased gap */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   width: 100%;
-  margin: 2rem 0; /* Added vertical margin */
 }
 
-/* Stats Card with improved spacing */
-.stats-card {
-  display: flex;
-  align-items: center;
-  gap: 2rem; /* Increased gap */
-  padding: 2rem; /* Increased padding */
-  border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border);
-}
-
-.stats-info h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 0.75rem; /* Increased margin */
-}
-
-.stats-info p {
-  color: var(--text-secondary);
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-/* Form Control with better spacing */
+/* Enhanced Form Controls */
 .form-control {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  padding: 1rem 1.25rem; /* Increased padding */
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
   color: var(--text);
   width: 100%;
-  margin-bottom: 1.5rem; /* Increased margin */
+  margin-bottom: 1.5rem;
   font-size: 1rem;
-  line-height: 1.5;
+  transition: all 0.2s ease;
 }
 
-/* Button Styles with better spacing */
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Modern Button Styles */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2rem; /* Increased padding */
-  border-radius: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.75rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   border: none;
-  gap: 1rem; /* Increased gap */
+  gap: 0.75rem;
   font-size: 1rem;
   letter-spacing: 0.5px;
-  margin: 0.5rem;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Status Indicators with better spacing */
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+/* Enhanced Status Indicators */
 .status-indicator {
   display: inline-flex;
   align-items: center;
-  padding: 0.5rem 1rem; /* Increased padding */
+  padding: 0.5rem 1rem;
   border-radius: 9999px;
   font-size: 0.875rem;
   font-weight: 500;
-  margin: 0.5rem 0;
-  letter-spacing: 0.5px;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* Toast with better spacing */
+/* Modern Toast Notifications */
 .toast {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  padding: 1.25rem 2rem; /* Increased padding */
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
   line-height: 1.5;
-  letter-spacing: 0.3px;
+  background: var(--background-light);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  animation: slideIn 0.3s ease;
+  z-index: 1000;
 }
 
-/* Responsive adjustments */
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Battery Level Indicator */
+.battery-indicator {
+  height: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.battery-level {
+  height: 100%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Responsive Design Improvements */
 @media (max-width: 768px) {
+  :root {
+    --content-padding: 1rem;
+  }
+
   body {
     font-size: 15px;
   }
 
   .App {
-    padding: 2rem;
+    padding: var(--content-padding);
   }
 
   .grid {
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
-  .card, .vehicle-card, .stats-card {
+  .card, .vehicle-card {
     padding: 1.5rem;
-    margin-bottom: 1.5rem;
   }
+
+  .button {
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* Dark Mode Focus Styles */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--background-lighter);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
 }

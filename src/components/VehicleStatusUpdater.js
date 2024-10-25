@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 function VehicleStatusUpdater({ vehicles, updateVehicle }) {
   useEffect(() => {
@@ -10,7 +10,7 @@ function VehicleStatusUpdater({ vehicles, updateVehicle }) {
           updateVehicle({ ...vehicle, battery: vehicle.battery + 10 });
         }
       });
-    }, 60000); // Runs every 60 seconds
+    }, 10000); // Runs every 10 seconds
 
     return () => clearInterval(interval);
   }, [vehicles, updateVehicle]);

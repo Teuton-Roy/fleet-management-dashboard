@@ -10,7 +10,7 @@ function VehicleStatusUpdater({ vehicles, updateVehicle }) {
           updateVehicle({ ...vehicle, battery: vehicle.battery + 10 });
         }
       });
-    }, 10000); // Runs every 10 seconds
+    }, 5000); // Runs every 5 seconds
 
     return () => clearInterval(interval);
   }, [vehicles, updateVehicle]);

@@ -21,8 +21,8 @@ function VehicleForm({ onSubmit, initialData }) {
   return (
     <form onSubmit={handleSubmit}>
       <input type="text" name="id" placeholder="Vehicle ID" value={vehicle.id} onChange={handleChange} required />
-      <input type="number" name="battery" placeholder="Battery %" value={vehicle.battery} onChange={handleChange} />
-      <input type="number" name="distance" placeholder="Distance travelled (km)" value={vehicle.distance} onChange={handleChange} />
+      <input type="number" name="battery" placeholder="Battery %"  onChange={handleChange} />
+      <input type="number" name="distance" placeholder="Distance travelled (km)" onChange={handleChange} />
       <input type="datetime-local" name="lastChargeTime" placeholder="Last Charge Time" value={vehicle.lastChargeTime} onChange={handleChange} />
       <select name="status" value={vehicle.status} onChange={handleChange}>
         <option value="In Transit">In Transit</option>

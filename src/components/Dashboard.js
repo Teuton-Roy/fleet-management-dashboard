@@ -3,6 +3,7 @@ import VehicleForm from './VehicleForm';
 import FleetDashboard from './FleetDashboard';
 import FleetOverview from './FleetOverview';
 import VehicleStatusUpdater from './VehicleStatusUpdater';
+import ChargingScheduler from './ChargingScheduler';
 import {
   getVehicles,
   addOrUpdateVehicle,
@@ -61,6 +62,9 @@ function Dashboard() {
 
       {/* VehicleStatusUpdater for real-time status simulation */}
       <VehicleStatusUpdater vehicles={vehicles} updateVehicle={handleUpdateVehicle} />
+
+      
+      <ChargingScheduler />
     </div>
   );
 }

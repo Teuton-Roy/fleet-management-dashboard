@@ -111,3 +111,6 @@ This Fleet Management Dashboard is a React-based web application designed to hel
 
 5. Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
 
+### deploy
+
+1. https://fleetmanagementbyteuton.netlify.app/
